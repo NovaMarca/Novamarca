@@ -46,9 +46,3 @@ Como validar rapidamente:
 - Abra `internacional.html` no navegador local e teste o botão flutuante — escolha um idioma e confirme que os textos mudam sem recarregar a página.
 - Navegue pelas páginas (`index.html`, `marcas.html`, `patentes.html`, `monitoramento-marcas.html`, `busca-anterioridade.html`) e confira os CTAs de WhatsApp e as seções descritas.
 
-Próximos passos sugeridos (opcional):
-- Ajustar tamanhos/cores dos logos — informe o `px` ou a cor (hex / classe Tailwind) desejada.
-- Internacionalizar mais conteúdos (ex.: `alt` de imagens) se necessário.
-
-Se quiser, atualizo o README com instruções de deploy (ex.: GitHub Pages) ou faço alterações visuais adicionais nas páginas.
-
