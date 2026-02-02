@@ -101,6 +101,103 @@
         .department-button:hover {
             background-color: #A00000;
         }
+        /* Floating Translator Styles */
+        .floating-translator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        .translator-toggle {
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .translator-toggle:hover {
+            background-color: #A00000;
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        .translator-toggle i {
+            font-size: 18px;
+        }
+        .translator-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background-color: white;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            min-width: 180px;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .translator-lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+            border: 1px solid #e0e0e0;
+            background-color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 500;
+            color: #334155;
+        }
+        .translator-lang-btn:hover {
+            background-color: #f5f5f5;
+            border-color: #8B0000;
+            color: #8B0000;
+            transform: translateX(-5px);
+        }
+        .translator-lang-btn img {
+            width: 24px;
+            height: 16px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+        @media (max-width: 768px) {
+            .floating-translator {
+                bottom: 20px;
+                right: 20px;
+            }
+            .translator-toggle {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+            .translator-toggle i {
+                font-size: 16px;
+            }
+            .translator-menu {
+                min-width: 160px;
+            }
+        }
     </style>
 </head>
 
@@ -113,16 +210,16 @@
                     <img src="assets/images/logo_novamarca.png" alt="Nova Marca" class="h-12" />
                 </div>
                 <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-red-700 font-medium">Início</a>
-                    <a href="marcas.html" class="text-gray-700 hover:text-red-700 font-medium">Serviços</a>
-                    <a href="patentes.html" class="text-gray-700 hover:text-red-700 font-medium">Quem Somos</a>
-                    <a href="monitoramento-marcas.html" class="text-gray-700 hover:text-red-700 font-medium">Depoimentos</a>
-                    <a href="busca-anterioridade.html" class="text-gray-700 hover:text-red-700 font-medium">Blog</a>
-                    <a href="internacional.html" class="text-gray-700 hover:text-red-700 font-medium">Internacional</a>
+                    <a href="index.html" class="text-gray-700 hover:text-red-700 font-medium" data-i18n="nav.home">Início</a>
+                    <a href="marcas.html" class="text-gray-700 hover:text-red-700 font-medium" data-i18n="nav.services">Serviços</a>
+                    <a href="patentes.html" class="text-gray-700 hover:text-red-700 font-medium" data-i18n="nav.about">Quem Somos</a>
+                    <a href="monitoramento-marcas.html" class="text-gray-700 hover:text-red-700 font-medium" data-i18n="nav.testimonials">Depoimentos</a>
+                    <a href="busca-anterioridade.html" class="text-gray-700 hover:text-red-700 font-medium" data-i18n="nav.blog">Blog</a>
+                    <a href="internacional.html" class="text-gray-700 hover:text-red-700 font-medium" data-i18n="nav.international">Internacional</a>
                 </nav>
                 <a href="#" class="whatsapp-button">
                     <i class="fab fa-whatsapp whatsapp-icon"></i>
-                    Atendimento via WhatsApp
+                    <span data-i18n="whatsapp.contact">Atendimento via WhatsApp</span>
                 </a>
             </div>
         </div>
@@ -133,11 +230,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h1 class="text-5xl font-bold mb-6">Expanda sua Marca para o Mundo</h1>
-                    <p class="text-xl mb-8">Proteja sua marca internacionalmente com especialistas em registro de marcas no WIPO e Madrid Protocol. Alcance novos mercados com segurança jurídica.</p>
+                    <h1 class="text-5xl font-bold mb-6" data-i18n="hero.title">Expanda sua Marca para o Mundo</h1>
+                    <p class="text-xl mb-8" data-i18n="hero.subtitle">Proteja sua marca internacionalmente com especialistas em registro de marcas no WIPO e Madrid Protocol. Alcance novos mercados com segurança jurídica.</p>
                     <button class="whatsapp-button" onclick="openModal('contact-modal')">
                         <i class="fab fa-whatsapp whatsapp-icon"></i>
-                        Fale Agora com um Especialista no WhatsApp
+                        <span data-i18n="hero.cta">Fale Agora com um Especialista no WhatsApp</span>
                     </button>
                 </div>
                 <div class="flex justify-center">
@@ -152,44 +249,44 @@
         
         <!-- Services Grid -->
         <section class="mb-20">
-            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Por que Registrar sua Marca Internacionalmente?</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Proteja seus direitos de propriedade intelectual em múltiplos países e garanta o sucesso de seu negócio no mercado global.</p>
+                <h2 class="text-4xl font-bold text-center mb-4 text-gray-900" data-i18n="why.title">Por que Registrar sua Marca Internacionalmente?</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-i18n="why.subtitle">Proteja seus direitos de propriedade intelectual em múltiplos países e garanta o sucesso de seu negócio no mercado global.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="card p-8 text-center">
                     <div class="text-5xl mb-4"><i class="fas fa-shield-alt text-red-700"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Proteção Global</h3>
-                    <p class="text-gray-600">Proteja sua marca em diversos países através de um único registro internacional pelo Madrid Protocol.</p>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900" data-i18n="card.protection.title">Proteção Global</h3>
+                    <p class="text-gray-600" data-i18n="card.protection.desc">Proteja sua marca em diversos países através de um único registro internacional pelo Madrid Protocol.</p>
                 </div>
 
                 <div class="card p-8 text-center">
                     <div class="text-5xl mb-4"><i class="fas fa-clock text-red-700"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Processo Rápido</h3>
-                    <p class="text-gray-600">Economize tempo e recursos registrando sua marca internacionalmente de forma ágil e eficiente.</p>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900" data-i18n="card.speed.title">Processo Rápido</h3>
+                    <p class="text-gray-600" data-i18n="card.speed.desc">Economize tempo e recursos registrando sua marca internacionalmente de forma ágil e eficiente.</p>
                 </div>
 
                 <div class="card p-8 text-center">
                     <div class="text-5xl mb-4"><i class="fas fa-cogs text-red-700"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Suporte Especializado</h3>
-                    <p class="text-gray-600">Contamos com especialistas em propriedade intelectual internacional para orientá-lo em cada etapa.</p>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900" data-i18n="card.support.title">Suporte Especializado</h3>
+                    <p class="text-gray-600" data-i18n="card.support.desc">Contamos com especialistas em propriedade intelectual internacional para orientá-lo em cada etapa.</p>
                 </div>
 
                 <div class="card p-8 text-center">
                     <div class="text-5xl mb-4"><i class="fas fa-chart-line text-red-700"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Crescimento de Negócios</h3>
-                    <p class="text-gray-600">Expanda com confiança para novos mercados sabendo que sua marca está protegida legalmente.</p>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900" data-i18n="card.growth.title">Crescimento de Negócios</h3>
+                    <p class="text-gray-600" data-i18n="card.growth.desc">Expanda com confiança para novos mercados sabendo que sua marca está protegida legalmente.</p>
                 </div>
             </div>
         </section>
 
         <!-- Clients Section -->
         <section class="mb-20">
-            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Empresas que Confiam em Nós</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Milhares de empresas ao redor do mundo já protegeram suas marcas e patentes conosco.</p>
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900" data-i18n="clients.title">Empresas que Confiam em Nós</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-i18n="clients.subtitle">Milhares de empresas ao redor do mundo já protegeram suas marcas e patentes conosco.</p>
             
             <!-- Marcas Category -->
             <div class="mb-16">
-                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Registro de Marcas</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center" data-i18n="clients.brands">Registro de Marcas</h3>
                 <div class="bg-gray-50 rounded-lg p-12">
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                         <div class="flex items-center justify-center">
@@ -223,7 +320,7 @@
 
             <!-- Patentes Category -->
             <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Registro de Patentes</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center" data-i18n="clients.patents">Registro de Patentes</h3>
                 <div class="bg-gray-50 rounded-lg p-12">
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                         <div class="flex items-center justify-center">
@@ -258,45 +355,45 @@
 
         <!-- How it Works -->
         <section class="bg-gray-50 rounded-lg p-12 mb-20">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Como Funciona o Registro Internacional</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900" data-i18n="how.title">Como Funciona o Registro Internacional</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="text-center">
                     <div class="bg-red-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
-                    <h3 class="font-bold text-gray-900 mb-2">Análise</h3>
-                    <p class="text-gray-600">Avaliamos sua marca e defimos a melhor estratégia de proteção internacional.</p>
+                    <h3 class="font-bold text-gray-900 mb-2" data-i18n="how.step1.title">Análise</h3>
+                    <p class="text-gray-600" data-i18n="how.step1.desc">Avaliamos sua marca e defimos a melhor estratégia de proteção internacional.</p>
                 </div>
 
                 <div class="text-center">
                     <div class="bg-red-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
-                    <h3 class="font-bold text-gray-900 mb-2">Registro</h3>
-                    <p class="text-gray-600">Realizamos o registro pelo Madrid Protocol ou WIPO nos países desejados.</p>
+                    <h3 class="font-bold text-gray-900 mb-2" data-i18n="how.step2.title">Registro</h3>
+                    <p class="text-gray-600" data-i18n="how.step2.desc">Realizamos o registro pelo Madrid Protocol ou WIPO nos países desejados.</p>
                 </div>
 
                 <div class="text-center">
                     <div class="bg-red-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
-                    <h3 class="font-bold text-gray-900 mb-2">Monitoramento</h3>
-                    <p class="text-gray-600">Monitoramos sua marca para evitar conflitos e possíveis violações de direitos.</p>
+                    <h3 class="font-bold text-gray-900 mb-2" data-i18n="how.step3.title">Monitoramento</h3>
+                    <p class="text-gray-600" data-i18n="how.step3.desc">Monitoramos sua marca para evitar conflitos e possíveis violações de direitos.</p>
                 </div>
 
                 <div class="text-center">
                     <div class="bg-red-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
-                    <h3 class="font-bold text-gray-900 mb-2">Proteção</h3>
-                    <p class="text-gray-600">Sua marca está protegida juridicamente em múltiplos países simultaneamente.</p>
+                    <h3 class="font-bold text-gray-900 mb-2" data-i18n="how.step4.title">Proteção</h3>
+                    <p class="text-gray-600" data-i18n="how.step4.desc">Sua marca está protegida juridicamente em múltiplos países simultaneamente.</p>
                 </div>
             </div>
         </section>
 
         <!-- European Union Section -->
         <section class="mb-20">
-            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Registro na União Europeia</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">A melhor opção para proteger sua marca em toda a Europa com custo reduzido.</p>
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900" data-i18n="eu.title">Registro na União Europeia</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-i18n="eu.subtitle">A melhor opção para proteger sua marca em toda a Europa com custo reduzido.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="card p-8">
                     <div class="text-5xl mb-4 text-red-700"><i class="fas fa-euro-sign"></i></div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Registro de Marcas na UE</h3>
-                    <p class="text-gray-600 mb-4">Com o registro de marca junto à EUIPO (Agência de Propriedade Intelectual da União Europeia), você protege sua marca em todos os 27 países membros da UE com um único registro.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900" data-i18n="eu.brands.title">Registro de Marcas na UE</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="eu.brands.desc">Com o registro de marca junto à EUIPO (Agência de Propriedade Intelectual da União Europeia), você protege sua marca em todos os 27 países membros da UE com um único registro.</p>
                     <ul class="text-gray-600 space-y-3 mb-6">
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
@@ -323,8 +420,8 @@
 
                 <div class="card p-8">
                     <div class="text-5xl mb-4 text-red-700"><i class="fas fa-flask"></i></div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Registro de Patentes na UE</h3>
-                    <p class="text-gray-600 mb-4">Proteja suas inovações em toda a Europa através da Organização Europeia de Patentes (OEP), oferecendo cobertura em 38 países europeus com uma única solicitação.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900" data-i18n="eu.patents.title">Registro de Patentes na UE</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="eu.patents.desc">Proteja suas inovações em toda a Europa através da Organização Europeia de Patentes (OEP), oferecendo cobertura em 38 países europeus com uma única solicitação.</p>
                     <ul class="text-gray-600 space-y-3 mb-6">
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
@@ -353,8 +450,8 @@
 
         <!-- Countries Section -->
         <section class="mb-20">
-            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Países Onde Atuamos</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Temos expertise em proteção de marca e patentes em diversos países ao redor do mundo.</p>
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900" data-i18n="countries.title">Países Onde Atuamos</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-i18n="countries.subtitle">Temos expertise em proteção de marca e patentes em diversos países ao redor do mundo.</p>
             
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 <!-- Brazil -->
@@ -433,12 +530,12 @@
 
         <!-- CTA Section -->
         <section class="bg-red-700 text-white rounded-lg p-12 text-center">
-            <h2 class="text-3xl font-bold mb-6">Pronto para Expandir Globalmente?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Entre em contato com nossos especialistas para uma consulta gratuita sobre registro internacional de marcas.</p>
+            <h2 class="text-3xl font-bold mb-6" data-i18n="cta.title">Pronto para Expandir Globalmente?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto" data-i18n="cta.desc">Entre em contato com nossos especialistas para uma consulta gratuita sobre registro internacional de marcas.</p>
             <div class="flex justify-center">
                 <button class="whatsapp-button bg-white text-red-700" onclick="openModal('contact-modal')">
                     <i class="fab fa-whatsapp whatsapp-icon"></i>
-                    Solicitar Consulta Gratuita
+                    <span data-i18n="cta.button">Solicitar Consulta Gratuita</span>
                 </button>
             </div>
         </section>
@@ -449,19 +546,19 @@
     <div id="contact-modal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal('contact-modal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-4">Entre em Contato</h2>
-            <p class="text-gray-600 mb-6">Selecione qual departamento deseja falar:</p>
+            <h2 class="text-2xl font-bold mb-4" data-i18n="modal.title">Entre em Contato</h2>
+            <p class="text-gray-600 mb-6" data-i18n="modal.subtitle">Selecione qual departamento deseja falar:</p>
             <button class="department-button" onclick="redirectToWhatsApp('Marca')">
-                <i class="fab fa-whatsapp mr-2"></i> Registro de Marca
+                <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="modal.dept.brand">Registro de Marca</span>
             </button>
             <button class="department-button" onclick="redirectToWhatsApp('Patente')">
-                <i class="fab fa-whatsapp mr-2"></i> Registro de Patente
+                <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="modal.dept.patent">Registro de Patente</span>
             </button>
             <button class="department-button" onclick="redirectToWhatsApp('Monitoramento')">
-                <i class="fab fa-whatsapp mr-2"></i> Monitoramento de Marca
+                <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="modal.dept.monitor">Monitoramento de Marca</span>
             </button>
             <button class="department-button" onclick="redirectToWhatsApp('Busca')">
-                <i class="fab fa-whatsapp mr-2"></i> Busca de Anterioridade
+                <i class="fab fa-whatsapp mr-2"></i> <span data-i18n="modal.dept.search">Busca de Anterioridade</span>
             </button>
         </div>
     </div>
@@ -516,28 +613,292 @@
         </div>
     </footer>
 
+    <!-- Floating Translation Button -->
+    <div id="floating-translator" class="floating-translator">
+        <button class="translator-toggle" onclick="toggleTranslatorMenu()">
+            <i class="fas fa-globe"></i>
+            <span>Traduzir</span>
+        </button>
+        <div id="translator-menu" class="translator-menu" style="display: none;">
+            <button class="translator-lang-btn" onclick="changeLanguage('en', 'English')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg" alt="English" />
+                <span>English</span>
+            </button>
+            <button class="translator-lang-btn" onclick="changeLanguage('es', 'Español')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/250px-Flag_of_Spain.svg.png" alt="Español" />
+                <span>Español</span>
+            </button>
+            <button class="translator-lang-btn" onclick="changeLanguage('fr', 'Français')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/250px-Flag_of_France.svg.png" alt="Français" />
+                <span>Français</span>
+            </button>
+            <button class="translator-lang-btn" onclick="changeLanguage('pt', 'Português')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/330px-Flag_of_Brazil.svg.png" alt="Português" />
+                <span>Português</span>
+            </button>
+        </div>
+    </div>
+
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
+        
+        // Fast internal translation using data-i18n attributes and dictionaries
+        const translations = {
+            pt: {
+                'nav.home': 'Início',
+                'nav.services': 'Serviços',
+                'nav.about': 'Quem Somos',
+                'nav.testimonials': 'Depoimentos',
+                'nav.blog': 'Blog',
+                'nav.international': 'Internacional',
+                'whatsapp.contact': 'Atendimento via WhatsApp',
+                'hero.title': 'Expanda sua Marca para o Mundo',
+                'hero.subtitle': 'Proteja sua marca internacionalmente com especialistas em registro de marcas no WIPO e Madrid Protocol. Alcance novos mercados com segurança jurídica.',
+                'hero.cta': 'Fale Agora com um Especialista no WhatsApp',
+                'why.title': 'Por que Registrar sua Marca Internacionalmente?',
+                'why.subtitle': 'Proteja seus direitos de propriedade intelectual em múltiplos países e garanta o sucesso de seu negócio no mercado global.',
+                'card.protection.title': 'Proteção Global',
+                'card.protection.desc': 'Proteja sua marca em diversos países através de um único registro internacional pelo Madrid Protocol.',
+                'card.speed.title': 'Processo Rápido',
+                'card.speed.desc': 'Economize tempo e recursos registrando sua marca internacionalmente de forma ágil e eficiente.',
+                'card.support.title': 'Suporte Especializado',
+                'card.support.desc': 'Contamos com especialistas em propriedade intelectual internacional para orientá-lo em cada etapa.',
+                'card.growth.title': 'Crescimento de Negócios',
+                'card.growth.desc': 'Expanda com confiança para novos mercados sabendo que sua marca está protegida legalmente.',
+                'clients.title': 'Empresas que Confiam em Nós',
+                'clients.subtitle': 'Milhares de empresas ao redor do mundo já protegeram suas marcas e patentes conosco.',
+                'clients.brands': 'Registro de Marcas',
+                'clients.patents': 'Registro de Patentes',
+                'how.title': 'Como Funciona o Registro Internacional',
+                'how.step1.title': 'Análise',
+                'how.step1.desc': 'Avaliamos sua marca e defimos a melhor estratégia de proteção internacional.',
+                'how.step2.title': 'Registro',
+                'how.step2.desc': 'Realizamos o registro pelo Madrid Protocol ou WIPO nos países desejados.',
+                'how.step3.title': 'Monitoramento',
+                'how.step3.desc': 'Monitoramos sua marca para evitar conflitos e possíveis violações de direitos.',
+                'how.step4.title': 'Proteção',
+                'how.step4.desc': 'Sua marca está protegida juridicamente em múltiplos países simultaneamente.',
+                'eu.title': 'Registro na União Europeia',
+                'eu.subtitle': 'A melhor opção para proteger sua marca em toda a Europa com custo reduzido.',
+                'eu.brands.title': 'Registro de Marcas na UE',
+                'eu.brands.desc': 'Com o registro de marca junto à EUIPO (Agência de Propriedade Intelectual da União Europeia), você protege sua marca em todos os 27 países membros da UE com um único registro.',
+                'eu.patents.title': 'Registro de Patentes na UE',
+                'eu.patents.desc': 'Proteja suas inovações em toda a Europa através da Organização Europeia de Patentes (OEP), oferecendo cobertura em 38 países europeus com uma única solicitação.',
+                'countries.title': 'Países Onde Atuamos',
+                'countries.subtitle': 'Temos expertise em proteção de marca e patentes em diversos países ao redor do mundo.',
+                'cta.title': 'Pronto para Expandir Globalmente?',
+                'cta.desc': 'Entre em contato com nossos especialistas para uma consulta gratuita sobre registro internacional de marcas.',
+                'cta.button': 'Solicitar Consulta Gratuita',
+                'modal.title': 'Entre em Contato',
+                'modal.subtitle': 'Selecione qual departamento deseja falar:',
+                'modal.dept.brand': 'Registro de Marca',
+                'modal.dept.patent': 'Registro de Patente',
+                'modal.dept.monitor': 'Monitoramento de Marca',
+                'modal.dept.search': 'Busca de Anterioridade'
+            },
+            en: {
+                'nav.home': 'Home',
+                'nav.services': 'Services',
+                'nav.about': 'About Us',
+                'nav.testimonials': 'Testimonials',
+                'nav.blog': 'Blog',
+                'nav.international': 'International',
+                'whatsapp.contact': 'WhatsApp Support',
+                'hero.title': 'Expand Your Brand Worldwide',
+                'hero.subtitle': 'Protect your brand internationally with experts in WIPO and the Madrid Protocol. Reach new markets with legal certainty.',
+                'hero.cta': 'Talk to a Specialist on WhatsApp',
+                'why.title': 'Why Register Your Brand Internationally?',
+                'why.subtitle': 'Protect your intellectual property rights in multiple countries and ensure your business succeeds globally.',
+                'card.protection.title': 'Global Protection',
+                'card.protection.desc': 'Protect your brand in multiple countries with a single international registration through the Madrid Protocol.',
+                'card.speed.title': 'Fast Process',
+                'card.speed.desc': 'Save time and resources by registering your brand internationally quickly and efficiently.',
+                'card.support.title': 'Expert Support',
+                'card.support.desc': 'We have international IP specialists to guide you through every step.',
+                'card.growth.title': 'Business Growth',
+                'card.growth.desc': 'Expand confidently into new markets knowing your brand is legally protected.',
+                'clients.title': 'Companies That Trust Us',
+                'clients.subtitle': 'Thousands of companies around the world have already protected their brands and patents with us.',
+                'clients.brands': 'Trademark Registration',
+                'clients.patents': 'Patent Registration',
+                'how.title': 'How International Registration Works',
+                'how.step1.title': 'Analysis',
+                'how.step1.desc': 'We evaluate your brand and define the best international protection strategy.',
+                'how.step2.title': 'Registration',
+                'how.step2.desc': 'We perform registration under the Madrid Protocol or WIPO in the desired countries.',
+                'how.step3.title': 'Monitoring',
+                'how.step3.desc': 'We monitor your brand to avoid conflicts and possible infringements.',
+                'how.step4.title': 'Protection',
+                'how.step4.desc': 'Your brand is legally protected in multiple countries simultaneously.',
+                'eu.title': 'EU Registration',
+                'eu.subtitle': 'The best option to protect your brand across Europe at reduced cost.',
+                'eu.brands.title': 'Trademark Registration in the EU',
+                'eu.brands.desc': 'With an EUIPO registration you protect your brand across all 27 EU member states with a single filing.',
+                'eu.patents.title': 'Patent Registration in the EU',
+                'eu.patents.desc': 'Protect your innovations across Europe through the European Patent Office (EPO), covering 38 countries with a single application.',
+                'countries.title': 'Countries Where We Operate',
+                'countries.subtitle': 'We have expertise in trademark and patent protection in many countries worldwide.',
+                'cta.title': 'Ready to Expand Globally?',
+                'cta.desc': 'Contact our specialists for a free consultation on international trademark registration.',
+                'cta.button': 'Request Free Consultation',
+                'modal.title': 'Get In Touch',
+                'modal.subtitle': 'Select which department you want to speak to:',
+                'modal.dept.brand': 'Trademark Registration',
+                'modal.dept.patent': 'Patent Registration',
+                'modal.dept.monitor': 'Trademark Monitoring',
+                'modal.dept.search': 'Prior Art Search'
+            },
+            es: {
+                'nav.home': 'Inicio',
+                'nav.services': 'Servicios',
+                'nav.about': 'Quiénes Somos',
+                'nav.testimonials': 'Testimonios',
+                'nav.blog': 'Blog',
+                'nav.international': 'Internacional',
+                'whatsapp.contact': 'Atención por WhatsApp',
+                'hero.title': 'Expande tu Marca al Mundo',
+                'hero.subtitle': 'Protege tu marca internacionalmente con expertos en WIPO y el Protocolo de Madrid. Llega a nuevos mercados con seguridad jurídica.',
+                'hero.cta': 'Habla con un Especialista en WhatsApp',
+                'why.title': '¿Por qué Registrar tu Marca Internacionalmente?',
+                'why.subtitle': 'Protege tus derechos de propiedad intelectual en múltiples países y asegura el éxito de tu negocio a nivel global.',
+                'card.protection.title': 'Protección Global',
+                'card.protection.desc': 'Protege tu marca en varios países mediante un único registro internacional por el Protocolo de Madrid.',
+                'card.speed.title': 'Proceso Rápido',
+                'card.speed.desc': 'Ahorra tiempo y recursos registrando tu marca internacionalmente de forma ágil y eficiente.',
+                'card.support.title': 'Soporte Especializado',
+                'card.support.desc': 'Contamos con especialistas en PI internacional para orientarte en cada etapa.',
+                'card.growth.title': 'Crecimiento de Negocios',
+                'card.growth.desc': 'Expande con confianza a nuevos mercados sabiendo que tu marca está legalmente protegida.',
+                'clients.title': 'Empresas que Confían en Nosotros',
+                'clients.subtitle': 'Miles de empresas en todo el mundo ya protegieron sus marcas y patentes con nosotros.',
+                'clients.brands': 'Registro de Marcas',
+                'clients.patents': 'Registro de Patentes',
+                'how.title': 'Cómo Funciona el Registro Internacional',
+                'how.step1.title': 'Análisis',
+                'how.step1.desc': 'Evaluamos tu marca y definimos la mejor estrategia de protección internacional.',
+                'how.step2.title': 'Registro',
+                'how.step2.desc': 'Realizamos el registro mediante el Protocolo de Madrid o WIPO en los países deseados.',
+                'how.step3.title': 'Monitoreo',
+                'how.step3.desc': 'Monitoreamos tu marca para evitar conflictos y posibles violaciones.',
+                'how.step4.title': 'Protección',
+                'how.step4.desc': 'Tu marca está protegida jurídicamente en múltiples países simultáneamente.',
+                'eu.title': 'Registro en la UE',
+                'eu.subtitle': 'La mejor opción para proteger tu marca en toda Europa con menor coste.',
+                'eu.brands.title': 'Registro de Marcas en la UE',
+                'eu.brands.desc': 'Con un registro en EUIPO proteges tu marca en los 27 países miembros con una sola solicitud.',
+                'eu.patents.title': 'Registro de Patentes en la UE',
+                'eu.patents.desc': 'Protege tus innovaciones en Europa a través de la Oficina Europea de Patentes (OEP), con cobertura en 38 países.',
+                'countries.title': 'Países Donde Operamos',
+                'countries.subtitle': 'Tenemos experiencia en protección de marcas y patentes en varios países alrededor del mundo.',
+                'cta.title': '¿Listo para Expandirte Globalmente?',
+                'cta.desc': 'Contacta a nuestros especialistas para una consulta gratuita sobre registro internacional de marcas.',
+                'cta.button': 'Solicitar Consulta Gratuita',
+                'modal.title': 'Contáctanos',
+                'modal.subtitle': 'Selecciona el departamento con el que deseas hablar:',
+                'modal.dept.brand': 'Registro de Marca',
+                'modal.dept.patent': 'Registro de Patente',
+                'modal.dept.monitor': 'Monitoreo de Marca',
+                'modal.dept.search': 'Búsqueda de Anterioridad'
+            },
+            fr: {
+                'nav.home': 'Accueil',
+                'nav.services': 'Services',
+                'nav.about': 'Qui Sommes-Nous',
+                'nav.testimonials': 'Témoignages',
+                'nav.blog': 'Blog',
+                'nav.international': 'International',
+                'whatsapp.contact': 'Support WhatsApp',
+                'hero.title': 'Développez votre Marque dans le Monde',
+                'hero.subtitle': "Protégez votre marque à l'international avec des experts du WIPO et du Protocole de Madrid. Atteignez de nouveaux marchés en toute sécurité juridique.",
+                'hero.cta': 'Parlez à un spécialiste sur WhatsApp',
+                'why.title': 'Pourquoi Enregistrer votre Marque à l’International ?',
+                'why.subtitle': "Protégez vos droits de propriété intellectuelle dans plusieurs pays et assurez le succès de votre entreprise à l'échelle mondiale.",
+                'card.protection.title': 'Protection Globale',
+                'card.protection.desc': 'Protégez votre marque dans plusieurs pays via un enregistrement international unique par le Protocole de Madrid.',
+                'card.speed.title': 'Processus Rapide',
+                'card.speed.desc': "Gagnez du temps et des ressources en enregistrant votre marque à l'international rapidement et efficacement.",
+                'card.support.title': 'Support Spécialisé',
+                'card.support.desc': "Nous disposons d'experts en PI internationale pour vous guider à chaque étape.",
+                'card.growth.title': 'Croissance des Affaires',
+                'card.growth.desc': 'Développez-vous en toute confiance sur de nouveaux marchés en sachant que votre marque est protégée juridiquement.',
+                'clients.title': 'Entreprises qui Nous Font Confiance',
+                'clients.subtitle': "Des milliers d'entreprises dans le monde ont déjà protégé leurs marques et brevets avec nous.",
+                'clients.brands': 'Enregistrement de Marques',
+                'clients.patents': 'Enregistrement de Brevets',
+                'how.title': "Comment Fonctionne l'Enregistrement International",
+                'how.step1.title': 'Analyse',
+                'how.step1.desc': 'Nous évaluons votre marque et définissons la meilleure stratégie de protection internationale.',
+                'how.step2.title': 'Enregistrement',
+                'how.step2.desc': "Nous réalisons l'enregistrement via le Protocole de Madrid ou l'OIB dans les pays souhaités.",
+                'how.step3.title': 'Surveillance',
+                'how.step3.desc': 'Nous surveillons votre marque pour éviter les conflits et les violations potentielles.',
+                'how.step4.title': 'Protection',
+                'how.step4.desc': 'Votre marque est protégée juridiquement dans plusieurs pays simultanément.',
+                'eu.title': 'Enregistrement dans l’UE',
+                'eu.subtitle': 'La meilleure option pour protéger votre marque dans toute l’Europe à moindre coût.',
+                'eu.brands.title': 'Enregistrement de Marques dans l’UE',
+                'eu.brands.desc': "Avec l'EUIPO, vous protégez votre marque dans les 27 pays membres avec un seul dépôt.",
+                'eu.patents.title': 'Enregistrement de Brevets dans l’UE',
+                'eu.patents.desc': "Protégez vos innovations dans toute l'Europe via l'Office européen des brevets (OEB), couvrant 38 pays.",
+                'countries.title': 'Pays où nous opérons',
+                'countries.subtitle': 'Nous avons une expertise en protection de marques et brevets dans de nombreux pays.',
+                'cta.title': 'Prêt à vous Déployer à l’International ?',
+                'cta.desc': 'Contactez nos spécialistes pour une consultation gratuite sur l’enregistrement international de marques.',
+                'cta.button': 'Demander une Consultation Gratuite',
+                'modal.title': 'Contactez-nous',
+                'modal.subtitle': 'Sélectionnez le département que vous souhaitez joindre :',
+                'modal.dept.brand': 'Enregistrement de Marque',
+                'modal.dept.patent': 'Enregistrement de Brevet',
+                'modal.dept.monitor': 'Surveillance de Marque',
+                'modal.dept.search': 'Recherche d’Antériorité'
+            }
+        };
+
+        function setTextForLang(lang) {
+            const dict = translations[lang] || translations.pt;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.textContent = dict[key];
+                }
+            });
         }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
+        function toggleTranslatorMenu() {
+            const menu = document.getElementById('translator-menu');
+            menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
         }
 
+        function changeLanguage(lang, langName) {
+            // close menu
+            const menu = document.getElementById('translator-menu');
+            if (menu) menu.style.display = 'none';
+            // if pt, reset to original texts (use dict.pt)
+            setTextForLang(lang);
+            localStorage.setItem('selectedLanguage', lang);
+            // set html lang attribute
+            document.documentElement.lang = (lang === 'pt') ? 'pt-BR' : lang;
+        }
+
+        // Keep existing helpers
+        function openModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
         function redirectToWhatsApp(department) {
             const message = `Olá! Gostaria de mais informações sobre ${department} Internacional.`;
             const whatsappLink = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
             window.open(whatsappLink, '_blank');
         }
 
-        window.onclick = function(event) {
+        window.addEventListener('click', function(event) {
             const modal = document.getElementById('contact-modal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
+            if (event.target == modal) modal.style.display = 'none';
+        });
+
+        // Initialize translations on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('selectedLanguage') || 'pt';
+            setTextForLang(saved);
+        });
     </script>
 
 </body>
