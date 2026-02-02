@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Patente | Nova Marca Marcas e Patentes</title>
+    <meta name="description"
+        content="Proteja suas invenções e criações industriais com o registro de patente na Nova Marca Marcas e Patentes. Garanta exclusividade e segurança legal para suas inovações.">
+    <meta name="keywords"
+        content="registro de patente, patentear invenção, INPI, proteção de invenção, patente industrial, propriedade intelectual, como patentear">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            /* Tailwind gray-50 */
+            color: #334155;
+            /* Tailwind slate-700 */
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            /* WhatsApp green */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1DA851;
+        }
+
+        .whatsapp-icon {
+            font-size: 1.25rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .star-rating .fa-star {
+            color: #FFD700;
+            /* Gold color for stars */
+        }
+
+        /* Custom styles for the WhatsApp modal */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1000;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .department-button {
+            background-color: #8B0000;
+            /* Dark Red */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 0.75rem;
+        }
+
+        .department-button:hover {
+            background-color: #6A0000;
+            /* Darker Red */
+        }
+
+        /* FAQ specific styles */
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            /* Tailwind gray-200 */
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #334155;
+            /* Tailwind slate-700 */
+            padding: 0.75rem 0;
+        }
+
+        .faq-question:hover {
+            color: #8B0000;
+            /* Dark Red */
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: #475569;
+            /* Tailwind slate-600 */
+            padding-top: 0.5rem;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+            /* Adjust as needed for content length */
+            transition: max-height 0.5s ease-in;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.rotate {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 fixed top-0 w-full z-50 rounded-b-lg">
+        <nav class="container mx-auto flex justify-between items-center flex-wrap">
+            <div class="flex items-center text-2xl font-bold text-[#8B0000]">
+                <a href="index.html">
+                    <img src="assets/images/logo_novamarcas.png" alt="Nova Marca Marcas e Patentes Logo"
+                        class="h-10 mr-2 object-contain">
+                </a>
+            </div>
+
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html"
+                    class="text-gray-700 hover:text-[#8B0000] font-medium transition-colors duration-300">Início</a>
+                <a href="marcas.html"
+                    class="text-gray-700 hover:text-[#8B0000] font-medium transition-colors duration-300">Serviços</a>
+                <a href="index.html#quem-somos"
+                    class="text-gray-700 hover:text-[#8B0000] font-medium transition-colors duration-300">Quem Somos</a>
+                <a href="index.html#depoimentos"
+                    class="text-gray-700 hover:text-[#8B0000] font-medium transition-colors duration-300">Depoimentos</a>
+                <a href="index.html#blog"
+                    class="text-gray-700 hover:text-[#8B0000] font-medium transition-colors duration-300">Blog</a>
+                <a href="index.html#contato"class="text-gray-700 hover:text-[#8B0000] font-medium transition-colors duration-300">Fale Conosco</a>
+                <a href="internacional.html" class="text-gray-700 hover:text-red-700 font-medium">Internacional</a>
+            </div>
+
+            <a href="#" id="whatsappHeaderBtn" class="whatsapp-button hidden md:flex">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                Atendimento via WhatsApp
+            </a>
+
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+            <a href="index.html"
+                class="block text-gray-700 hover:text-[#8B0000] font-medium py-2 px-4 rounded-md transition-colors duration-300">Início</a>
+            <a href="marcas.html"
+                class="block text-gray-700 hover:text-[#8B0000] font-medium py-2 px-4 rounded-md transition-colors duration-300">Serviços</a>
+            <a href="index.html#quem-somos"
+                class="block text-gray-700 hover:text-[#8B0000] font-medium py-2 px-4 rounded-md transition-colors duration-300">Quem
+                Somos</a>
+            <a href="index.html#depoimentos"
+                class="block text-gray-700 hover:text-[#8B0000] font-medium py-2 px-4 rounded-md transition-colors duration-300">Depoimentos</a>
+            <a href="index.html#blog"
+                class="block text-gray-700 hover:text-[#8B0000] font-medium py-2 px-4 rounded-md transition-colors duration-300">Blog</a>
+            <a href="index.html#contato"
+                class="block text-gray-700 hover:text-[#8B0000] font-medium py-2 px-4 rounded-md transition-colors duration-300">Fale
+                Conosco</a>
+            <a href="#" id="whatsappMobileBtn" class="whatsapp-button w-full justify-center mt-4">
+                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                Atendimento via WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <section id="hero"
+            class="bg-gradient-to-r from-[#8B0000] to-[#A00000] text-white py-16 md:py-24 px-6 md:px-12 rounded-b-3xl shadow-xl">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="text-center md:text-left md:w-1/2">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                        Registro de Patente: Proteja suas Invenções e Inovações
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up delay-200">
+                        Garanta a exclusividade sobre suas criações industriais e invenções com o registro de patente no
+                        INPI.
+                    </p>
+                    <a href="#" id="heroWhatsappBtn"
+                        class="whatsapp-button text-lg md:text-xl inline-flex items-center justify-center px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-400">
+                        <i class="fab fa-whatsapp whatsapp-icon mr-3"></i>
+                        Quero Patentear Minha Invenção
+                    </a>
+                </div>
+                <div class="md:w-1/2 flex justify-center md:justify-end">
+                    <img src="assets/images/patentes.jpg"
+                        alt="Ilustração de uma lâmpada e engrenagens, simbolizando invenção e patente"
+                        class="w-full max-w-md rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24 px-6 md:px-12 bg-white">
+            <div class="container mx-auto text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">O que é uma Patente?</h2>
+                <p class="text-lg text-gray-700 mb-6">
+                    Uma patente é um título de propriedade temporária concedido pelo Estado aos inventores ou autores de
+                    criações industriais. Ela confere o direito exclusivo de explorar comercialmente a invenção ou
+                    modelo de utilidade por um período determinado, impedindo que terceiros a produzam, usem, vendam ou
+                    importem sem sua autorização.
+                </p>
+                <p class="text-lg text-gray-700">
+                    Existem dois tipos principais de patentes no Brasil:
+                <ul class="list-disc list-inside ml-4 mt-4 space-y-2">
+                    <li><strong>Patente de Invenção (PI):</strong> Para novas soluções técnicas que resolvem um problema
+                        existente.</li>
+                    <li><strong>Patente de Modelo de Utilidade (MU):</strong> Para aperfeiçoamentos em objetos de uso
+                        prático, que resultem em melhoria funcional.</li>
+                </ul>
+                </p>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24 px-6 md:px-12 bg-gray-50">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Benefícios de Patentear sua Inovação</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center p-6 card">
+                        <div class="text-[#8B0000] text-5xl mb-4">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Monopólio Temporário</h3>
+                        <p class="text-gray-600 text-center">Direito exclusivo de exploração comercial por até 20 anos
+                            (PI) ou 15 anos (MU).</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 card">
+                        <div class="text-[#8B0000] text-5xl mb-4">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Vantagem Competitiva</h3>
+                        <p class="text-gray-600 text-center">Diferencie-se no mercado e fortaleça sua posição contra
+                            concorrentes.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 card">
+                        <div class="text-[#8B0000] text-5xl mb-4">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Geração de Receita</h3>
+                        <p class="text-gray-600 text-center">Possibilidade de licenciar, vender ou franquear sua
+                            tecnologia.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 card">
+                        <div class="text-[#8B0000] text-5xl mb-4">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Reconhecimento</h3>
+                        <p class="text-gray-600 text-center">Valoriza a imagem da sua empresa como inovadora e
+                            tecnológica.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 card">
+                        <div class="text-[#8B0000] text-5xl mb-4">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Segurança Jurídica</h3>
+                        <p class="text-gray-600 text-center">Proteção contra cópias, falsificações e uso não autorizado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24 px-6 md:px-12 bg-white">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Nosso Processo de Registro de Patente
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flex flex-col items-center p-6 bg-gray-100 rounded-lg shadow-md">
+                        <div class="text-[#8B0000] text-5xl font-bold mb-4">1</div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Análise de Patenteabilidade</h3>
+                        <p class="text-gray-600 text-center">Verificamos se sua invenção atende aos requisitos de
+                            novidade, atividade inventiva e aplicação industrial.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 bg-gray-100 rounded-lg shadow-md">
+                        <div class="text-[#8B0000] text-5xl font-bold mb-4">2</div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Elaboração da Patente</h3>
+                        <p class="text-gray-600 text-center">Redigimos o pedido de patente com clareza e precisão,
+                            incluindo relatórios descritivos e reivindicações.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 bg-gray-100 rounded-lg shadow-md">
+                        <div class="text-[#8B0000] text-5xl font-bold mb-4">3</div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Depósito no INPI</h3>
+                        <p class="text-gray-600 text-center">Protocolamos seu pedido de patente junto ao Instituto
+                            Nacional da Propriedade Industrial.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 bg-gray-100 rounded-lg shadow-md">
+                        <div class="text-[#8B0000] text-5xl font-bold mb-4">4</div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Acompanhamento e Concessão</h3>
+                        <p class="text-gray-600 text-center">Monitoramos o processo, respondemos a exigências e
+                            garantimos a concessão da sua patente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24 px-6 md:px-12 bg-gray-50">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">Perguntas Frequentes sobre
+                    Registro de Patente</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Qual a diferença entre marca e patente?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Marca protege nomes, logos e slogans que identificam produtos/serviços. Patente protege
+                                invenções e modelos de utilidade, ou seja, novas soluções técnicas ou aperfeiçoamentos
+                                funcionais.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Quanto tempo leva para registrar uma patente?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O processo de registro de patente é mais complexo e demorado que o de marca, podendo
+                                levar de 5 a 10 anos no INPI, devido à análise técnica aprofundada.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>É possível patentear uma ideia?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Não, a patente protege a invenção em si, ou seja, a solução técnica para um problema, e
+                                não a ideia abstrata. É preciso que a ideia esteja materializada e detalhada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="py-16 md:py-24 px-6 md:px-12 bg-gradient-to-r from-[#A00000] to-[#8B0000] text-white text-center rounded-t-3xl shadow-xl">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-8 leading-tight">
+                    Proteja sua inovação. Patenteie sua invenção com a Nova Marca!
+                </h2>
+                <a href="#" id="finalWhatsappBtn"
+                    class="whatsapp-button text-lg md:text-xl inline-flex items-center justify-center px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <i class="fab fa-whatsapp whatsapp-icon mr-3"></i>
+                    Fale com um Especialista em Patentes
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contato" class="bg-gray-800 text-gray-300 py-12 px-6 md:px-12 rounded-t-lg">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center text-2xl font-bold text-white mb-4">
+                    <img src="assets/images/logo_novamarcas.png" alt="Nova Marca Logo" class="h-10 mr-2 object-contain">
+                </div>
+                <p class="text-sm">Especialistas em registro de marcas e patentes, protegendo o futuro do seu negócio.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">Mapa do Site</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-white transition-colors duration-300">Início</a></li>
+                    <li><a href="marcas.html" class="hover:text-white transition-colors duration-300">Serviços</a></li>
+                    <li><a href="index.html#quem-somos" class="hover:text-white transition-colors duration-300">Quem
+                            Somos</a></li>
+                    <li><a href="index.html#depoimentos"
+                            class="hover:text-white transition-colors duration-300">Depoimentos</a></li>
+                    <li><a href="index.html#blog" class="hover:text-white transition-colors duration-300">Blog</a></li>
+                    <li><a href="index.html#contato" class="hover:text-white transition-colors duration-300">Fale
+                            Conosco</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">Contato</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><i class="fas fa-map-marker-alt mr-2"></i> Rua General Osório 1396, Ribeirão Preto, SP</li>
+                    <li><i class="fas fa-phone mr-2"></i> (16) 3372-4020</li>
+                    <li><i class="fab fa-whatsapp mr-2"></i> (16) 99311-5819</li>
+                    <li><i class="fas fa-envelope mr-2"></i> atendimento@novamarca.com.br</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">Siga-nos</h3>
+                <div class="flex space-x-4 mb-6">
+                    <a href="https://www.facebook.com/novamarca" target="_blank"
+                        class="text-gray-400 hover:text-white transition-colors duration-300 text-2xl"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/novamarca" target="_blank"
+                        class="text-gray-400 hover:text-white transition-colors duration-300 text-2xl"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/novamarca" target="_blank"
+                        class="text-gray-400 hover:text-white transition-colors duration-300 text-2xl"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Política de Privacidade</a>
+                    </li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Termos de Uso</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-sm text-gray-500 mt-10 border-t border-gray-700 pt-6">
+            &copy; <span id="year"></span> Nova Marca Marcas e Patentes. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <div id="whatsappModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Fale Conosco via WhatsApp</h3>
+            <p class="text-gray-700 mb-6">Selecione o departamento com o qual deseja falar:</p>
+            <div class="space-y-4">
+                <button class="department-button" data-department="Comercial">
+                    <i class="fas fa-handshake mr-2"></i> Comercial
+                </button>
+                <button class="department-button" data-department="Suporte">
+                    <i class="fas fa-headset mr-2"></i> Suporte
+                </button>
+                <button class="department-button" data-department="Dúvidas Jurídicas">
+                    <i class="fas fa-gavel mr-2"></i> Dúvidas Jurídicas
+                </button>
+                <button class="department-button" data-department="Geral">
+                    <i class="fas fa-comments mr-2"></i> Atendimento Geral
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+        // Get all WhatsApp buttons
+        const whatsappButtons = document.querySelectorAll('#whatsappHeaderBtn, #whatsappMobileBtn, #heroWhatsappBtn, #finalWhatsappBtn');
+        const whatsappModal = document.getElementById('whatsappModal');
+        const closeButton = document.querySelector('.close-button');
+        const departmentButtons = document.querySelectorAll('.department-button');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Updated WhatsApp number
+        const phoneNumber = '5516993115819'; // Using the updated WhatsApp number
+
+        // Function to open the modal
+        function openModal() {
+            whatsappModal.classList.remove('hidden');
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            whatsappModal.classList.add('hidden');
+        }
+
+        // Event listeners for opening the modal
+        whatsappButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default link behavior
+                openModal();
+            });
+        });
+
+        // Event listener for closing the modal
+        closeButton.addEventListener('click', closeModal);
+
+        // Close modal if clicked outside of content
+        window.addEventListener('click', function (event) {
+            if (event.target == whatsappModal) {
+                closeModal();
+            }
+        });
+
+        // Event listeners for department buttons
+        departmentButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const department = this.getAttribute('data-department');
+                let message = `Olá, gostaria de falar com o departamento ${department}.`;
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                closeModal(); // Close modal after opening WhatsApp
+            });
+        });
+
+        // Toggle mobile menu visibility
+        mobileMenuButton.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links (adjusted for multi-page)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Only prevent default and scroll if it's an internal anchor on the same page
+                if (this.hostname === location.hostname && this.pathname === location.pathname) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                // Close mobile menu after clicking a link
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.faq-icon');
+
+                // Close other open answers
+                document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
+                    if (openAnswer !== answer) {
+                        openAnswer.classList.remove('active');
+                        openAnswer.previousElementSibling.querySelector('.faq-icon').classList.remove('rotate');
+                    }
+                });
+
+                // Toggle current answer
+                answer.classList.toggle('active');
+                icon.classList.toggle('rotate');
+            });
+        });
+    </script>
+</body>
+
+</html>
