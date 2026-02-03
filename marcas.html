@@ -518,5 +518,39 @@
             });
         });
     </script>
+    <!-- WhatsApp Floating Button (Atendimento / Patentes / Marcas) -->
+    <style>
+        #wa-fab{position:fixed;bottom:22px;right:22px;z-index:1600;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+        #wa-fab .wa-menu{display:none;flex-direction:column;gap:8px;background:#fff;border-radius:12px;padding:8px;box-shadow:0 10px 25px rgba(0,0,0,0.15);min-width:180px}
+        #wa-fab .wa-menu.open{display:flex}
+        .wa-menu-btn{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;text-decoration:none;color:#111;background:#f8fafc;border:1px solid #e6e6e6;font-weight:600}
+        .wa-menu-btn i{width:18px;text-align:center}
+        .wa-menu-btn:hover{transform:translateX(-4px);background:#f0fdf4;border-color:#25D366}
+        #wa-toggle{background:#25D366;color:#fff;border:none;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(37,211,102,0.25);cursor:pointer;font-size:22px}
+        @media(max-width:640px){#wa-fab{right:16px;bottom:16px}.wa-menu{min-width:150px}}
+    </style>
+
+    <div id="wa-fab" aria-live="polite">
+        <div id="wa-menu" class="wa-menu" aria-hidden="true">
+            <a href="#" class="wa-menu-btn" data-type="atendimento"><i class="fas fa-headset"></i> Atendimento</a>
+            <a href="#" class="wa-menu-btn" data-type="patentes"><i class="fas fa-file-alt"></i> Patentes</a>
+            <a href="#" class="wa-menu-btn" data-type="marcas"><i class="fas fa-certificate"></i> Marcas</a>
+        </div>
+        <button id="wa-toggle" aria-expanded="false" aria-controls="wa-menu" aria-label="Abrir WhatsApp"><i class="fab fa-whatsapp"></i></button>
+    </div>
+
+    <script>
+        (function(){
+            const numbers = { atendimento: '551633741988', patentes: '5516982220047', marcas: '5516997080037' };
+            const messages = { atendimento: 'Olá! Gostaria de atendimento.', patentes: 'Olá! Tenho interesse em patentes.', marcas: 'Olá! Tenho interesse em registro de marca.' };
+            const toggle = document.getElementById('wa-toggle');
+            const menu = document.getElementById('wa-menu');
+            if(!toggle || !menu) return;
+            toggle.addEventListener('click', function(e){ e.stopPropagation(); const open = menu.classList.toggle('open'); this.setAttribute('aria-expanded', open); menu.setAttribute('aria-hidden', !open); });
+            menu.addEventListener('click', function(e){ const btn = e.target.closest('.wa-menu-btn'); if(!btn) return; e.preventDefault(); const t = btn.dataset.type; const url = `https://wa.me/${numbers[t]}?text=${encodeURIComponent(messages[t])}`; window.open(url,'_blank'); menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); });
+            document.addEventListener('click', function(e){ if(!document.getElementById('wa-fab').contains(e.target)){ menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); menu.setAttribute('aria-hidden','true'); }});
+        })();
+    </script>
+
 </body>
 </html>
